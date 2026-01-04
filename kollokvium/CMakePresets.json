@@ -1,0 +1,56 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "default",
+            "description": "Default build configuration",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "windows-default",
+            "description": "Windows build with tests",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "BUILD_TESTING": "ON"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug",
+            "configurePreset": "default",
+            "configuration": "Debug"
+        },
+        {
+            "name": "release",
+            "configurePreset": "windows-default",
+            "configuration": "Release"
+        },
+        {
+            "name": "kol",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "windows-default"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "test-default",
+            "configurePreset": "windows-default",
+            "configuration": "Release",
+            "output": {
+                "outputOnFailure": true
+            },
+              "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": false
+      }
+        }
+    ]
+}
